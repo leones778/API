@@ -1,10 +1,16 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/hello')
-def hello():
-    return "privet"
+@app.route('/books/<int:id>')
+def get_book(id):
+    book = {
+        "id": id,
+        "title": "flask API DEV",
+        "publication_date": "December 2231"
+    }
+    return jsonify(book)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
